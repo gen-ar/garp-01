@@ -3,9 +3,215 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>Generative AR-Posters</title>
+	<style type="text/css">
+		:root {
+		  --bg: #000;
+		  --col: #fff;
+		}
+		@font-face {
+		  font-family: 'roboto_mono';
+		  src: url('assets/fonts/robotomono-regular-webfont.woff2') format('woff2'),
+		  url('assets/fonts/robotomono-regular-webfont.woff') format('woff');
+		  font-weight: 400;
+		  font-style: normal;
+		}
+		body{
+			background: var(--bg);
+			margin: 0;
+			font-family: 'roboto_mono', sans-serif;
+			font-size: 24pt;
+			color: var(--col);
+			overflow: hidden;
+		}
+		a{
+			text-decoration: none;
+			color: var(--col);
+		}
+		*{
+			box-sizing: border-box;
+		}
+		.holder{
+			width: 50vw;
+			height: 100vh;
+			float: left;
+		}
+		#project-holder{
+			/*background: green;*/
+			border-right: 1px solid var(--col);
+			overflow: auto;
+		}
+		#poster-holder{
+			background: var(--bg);
+		}
+		#poster-holder img{
+			height: 100%;
+			border-right: 1px solid var(--col);
+		}
+		.project{
+			position: relative;
+			border-bottom: 1px solid var(--col);
+			padding: 5px 0 5px 0 ;
+			clear: both;
+		}
+		.project.active{
+			background: var(--col);
+			color: var(--bg);
+		}
+		.project-info{
+			display: none;
+			overflow: auto;
+		}
+		.project-data{
+			height: 100%;
+			width: calc(100% );
+			float: left;
+		}
+		.name{
+			/*font-family: serif;*/
+			cursor: pointer;
+		}
+		.desc{
+			/*border-top: 2px solid var(--col);*/
+			font-size: 9pt;
+			padding: 5px;
+			text-align: justify;
+			column-count: 1;
+			line-height: 1.5em;
+		}
+		.qr{
+			/*font-size: 9pt;*/
+			float: right;
+			margin: -5px 0px -4px 15px;
+		}
+		.qr img{
+			height: 256px;
+			width: 256px;
+			filter: invert();
+		}
+		.qr-help{
+			position: absolute;
+			top: 32px;
+			margin-left: 15px;
+			font-size: 9pt;
+		}
+	</style>
 </head>
 <body>
-wait for it...
+	<div id="project-holder" class="holder">
+		<!-- <div id="project-${c}" class="project" style="border-bottom:3px solid #fff;">
+				<div id="name-0" class="name">Generative AR-Posters</div>
+				<div class="project-info">
+					<div class="project-data">
+						<div class="desc">
+							Welcome to the group exhibition for our IDCE Winter Workshop 2023 on Generative AR-Posters.<br><br>
+							For viewing, click on each participant's name below, <br>scan the QR code with your phone, and enjoy the generative AR experience while viewing their poster.
+						</div>
+						<div class="qr">
+							<img src="assets/qr/qr-0.png"><br>
+							<span class="qr-help">SCAN WITH SMARTPHONE</span>
+						</div>
+					</div>
+				</div>
+		</div> -->
+	</div>
+	<div id="poster-holder" class="holder"></div>
+
+	<script type="text/javascript">
+		let data = [
+			{name:'Generative AR-Posters', desc:`
+6. — 10. February 2023<br>
+<a href="" target="_blank">Martin Golombek</a> & <a href="https://teddavis.org" target="_blank">Ted Davis</a><br> 
+<a href="https://idce.ch" target="_blank">FHNW HGK IDCE</a><br><br>
+
+				Welcome to the [digital] exhibition for our Winter Workshop.<br><br>
+				– Click on a participant's name below<br>
+				– Scan their QR code with your smartphone<br>
+				– Allow camera access to scan poster<br>
+				– Enjoy the generative AR experience!
+			`},
+			{
+				name:'Christian Stindl', 
+				desc:`
+						 
+			`},
+			{name:'Christine Jungo', desc:` `},
+			{name:'Eunbee Lee', desc:` `},
+			{name:'Gil Fontimayor', desc:` `},
+			{name:'Hongkyung Son', desc:` `},
+			{name:'Sara Moser', desc:` `},
+			{name:'Timo Rick', desc:` `},
+		]
+
+		let c = 0
+		let projectHolder = document.getElementById('project-holder')
+		let posterHolder = document.getElementById('poster-holder')
+		for(let d of data){
+			projectHolder.innerHTML +=`<div id="project-${c}" class="project">
+				<div id="name-${c}" class="name">${d.name}</div>
+				<div class="project-info">
+					<div class="project-data">
+						<div class="qr">
+							<a href="https://gen-ar.github.io/garp-01/${c}" target="_blank"><img src="assets/qr/qr-${c}.png"></a><br>
+							<span class="qr-help">SCAN WITH SMARTPHONE</span>
+						</div>
+						<div class="desc">${d.desc}</div>
+					</div>
+					
+				</div>
+			</div>`
+			c++
+		}
+
+		// built upon : https://stackoverflow.com/a/65518843/10885535
+		// Select all accordion items
+		var acc = document.querySelectorAll('.name');
+
+		// Iterate to add event listeners
+		let openCount = 1
+		acc.forEach(item => {
+		    item.addEventListener('click', function (e) {
+		        // When it's clicked, loop through all the items
+		        let id = e.target.id.substring(5)
+
+		        acc.forEach(el => {
+		            // Close any open items
+		            if (el.classList.contains('active')) {
+		                closeAcc(el, id);
+		                // If it's the one that was clicked and it's closed, open it
+		            } else if (el === item) {
+		                openAcc(el, id);
+		            }
+		        });
+		    });
+		});
+
+		function closeAcc (el, id) {
+		    el.classList.remove('active');
+		    el.nextElementSibling.style.display = 'none'
+		    openCount--
+		    if(openCount == 0){
+		    	posterHolder.innerHTML = ''
+		    }
+		};
+
+		function openAcc (el, id) {
+			// location.hash = id
+			location.replace("#"+id); 
+		    el.classList.add('active');
+		    el.nextElementSibling.style.display = 'block'
+		    posterHolder.innerHTML = `<img src="assets/poster/${id}.png">`
+		    openCount++
+		}
+
+		if(window.location.hash) {
+		  // Fragment exists
+		  let id = location.hash.substring(1)
+		  openAcc(document.getElementById('name-'+id), id);
+		} else {
+		  openAcc(document.getElementById('name-0'), 0);
+		}
+		
+	</script>
 </body>
 </html>
