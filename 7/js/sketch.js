@@ -34,9 +34,9 @@ var canvaslottie
 let myFont
 
 function preload() {
-	myFont = loadFont('/font/IBMPlexMono-SemiBold.ttf');
-	anim1 = loadJSON('/lottie1.json');
-	anim2 = loadJSON('/lottie2.json');
+	myFont = loadFont('font/IBMPlexMono-SemiBold.ttf');
+	anim1 = loadJSON('lottie1.json');
+	anim2 = loadJSON('lottie2.json');
 }
 
 function setup() {
