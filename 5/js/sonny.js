@@ -23,10 +23,10 @@ const myShape = {
 
 
 function preload() {
-	watch = loadImage('5/data/image/watch.png')
-	apple = loadImage('5/data/image/apple4.png')
-	gold = loadImage('5/data/image/money.png')
-	rooster = loadImage('5/data/image/rooster.png')
+	watch = loadImage('data/image/watch.png')
+	apple = loadImage('data/image/apple4.png')
+	gold = loadImage('data/image/money.png')
+	rooster = loadImage('data/image/rooster.png')
 	imgs.push(watch)
 	imgs.push(apple)
 	imgs.push(gold)
