@@ -3,7 +3,6 @@ let layer2
 let layer3
 let layer4
 
-let libs = ['/bodymovin.min.js', '/lottie.min.js'];
 
 let layer8
 let layer9
@@ -34,9 +33,9 @@ var canvaslottie
 let myFont
 
 function preload() {
-	myFont = loadFont('7/font/IBMPlexMono-SemiBold.ttf');
-	anim1 = loadJSON('7/lottie1.json');
-	anim2 = loadJSON('7/lottie2.json');
+	myFont = loadFont('font/IBMPlexMono-SemiBold.ttf');
+	anim1 = loadJSON('lottie1.json');
+	anim2 = loadJSON('lottie2.json');
 }
 
 function setup() {
