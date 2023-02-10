@@ -12,12 +12,12 @@ function setup() {
 }
 
 function draw() {
-	layer.clear();
+	// layer.clear();
 	layer.background(0, 9);
 	layer.colorMode(RGB);
 	//layer.noStroke();
 	layer.stroke(0, 95.88, 136.7)
-	layer.strokeWeight(90);
+	layer.strokeWeight(30);
 	
 
 
