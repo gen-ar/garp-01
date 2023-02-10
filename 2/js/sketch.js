@@ -17,6 +17,7 @@ function preload(){
 function setup() {
 	//createCanvas(windowWidth, windowHeight);
 	createCanvas(895, 1280)
+	pixelDensity(1)
 	ar = createGraphics(895, 1280, P2D, document.getElementById('canvas'))
 	layerT = createGraphics(895 * layerScale, 1280 * layerScale)
 	layerI = createGraphics(895 * layerScale, 1280 * layerScale)
@@ -144,7 +145,7 @@ function draw() {
 	ar.image(layerI, 895 / 2, 0, 895 / 2, 1280 / 2)
 	ar.image(layerM, 0, 895 / 2, 895 / 2, 1280 / 2)
 	ar.image(layerE, 895 / 2, 1280 / 2, 895 / 2, 1280 / 2)
-image(ar, 0, 0)
+// image(ar, 0, 0)
 	
 }
 
