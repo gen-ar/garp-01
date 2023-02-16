@@ -164,7 +164,7 @@ The stacked time could have different aesthetic that we did not expect, we shoul
 		let projectHolder = document.getElementById('project-holder')
 		let posterHolder = document.getElementById('poster-holder')
 		for(let d of data){
-			projectHolder.innerHTML +=`<div id="project-${c}" class="project">
+			let dHTML =`<div id="project-${c}" class="project">
 				<div id="name-${c}" class="name">${d.name}</div>
 				<div class="project-info">
 					<div class="project-data">
@@ -177,6 +177,9 @@ The stacked time could have different aesthetic that we did not expect, we shoul
 					
 				</div>
 			</div>`
+
+			if(c != 6)
+			projectHolder.innerHTML += dHTML
 			c++
 		}
 
